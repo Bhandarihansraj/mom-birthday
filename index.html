@@ -17,7 +17,7 @@ background:url('bg.jpg') center/cover no-repeat fixed;
 overflow:hidden;
 }
 
-/* WARM FAMILY OVERLAY */
+/* OVERLAY */
 body::before{
 content:"";
 position:fixed;
@@ -26,7 +26,7 @@ background:radial-gradient(circle at top,rgba(255,255,255,.18),rgba(0,0,0,.75));
 z-index:-1;
 }
 
-/* START SCREEN */
+/* START */
 #start{
 position:fixed;
 inset:0;
@@ -45,12 +45,6 @@ border-radius:30px;
 text-align:center;
 color:white;
 box-shadow:0 40px 100px rgba(0,0,0,.7);
-animation:pop 1s ease;
-}
-
-@keyframes pop{
-from{opacity:0;transform:scale(.85)}
-to{opacity:1}
 }
 
 .start-btn{
@@ -62,7 +56,6 @@ font-size:1.1rem;
 cursor:pointer;
 background:linear-gradient(135deg,#ffb6c1,#ffd1a4);
 color:#5a2a2a;
-box-shadow:0 12px 30px rgba(0,0,0,.45);
 }
 
 /* MAIN CARD */
@@ -79,34 +72,28 @@ border:1px solid rgba(255,255,255,.3);
 box-shadow:0 45px 100px rgba(0,0,0,.75);
 text-align:center;
 display:none;
-animation:rise 1s ease;
-}
-
-@keyframes rise{
-from{opacity:0;transform:translateY(50px)}
-to{opacity:1}
 }
 
 /* SLIDES */
 .slide{display:none}
-.slide.active{display:block;animation:fade .9s ease}
+.slide.active{display:block}
 
-@keyframes fade{
-from{opacity:0;transform:scale(.94)}
-to{opacity:1}
-}
-
-/* CAKE */
+/* CAKE (AGE 52) */
 .cake{
 margin:10px auto 14px;
-width:140px;
+width:150px;
+}
+.age{
+font-family:'Dancing Script',cursive;
+font-size:2rem;
+color:#fff;
+margin-bottom:6px;
 }
 .layer{
 height:26px;
 border-radius:12px;
 margin:4px 0;
 background:linear-gradient(135deg,#ffb6c1,#ffd1a4);
-box-shadow:0 6px 15px rgba(0,0,0,.35);
 }
 .candles{
 display:flex;
@@ -133,11 +120,11 @@ border-radius:50%;
 animation:flicker 1s infinite;
 }
 @keyframes flicker{
-0%,100%{opacity:1;transform:scale(1)}
-50%{opacity:.6;transform:scale(.9)}
+0%,100%{opacity:1}
+50%{opacity:.6}
 }
 
-/* FLIP IMAGE */
+/* FLIP — PHONE SAFE */
 .flip{
 width:210px;
 height:270px;
@@ -151,8 +138,7 @@ position:relative;
 transform-style:preserve-3d;
 transition:.8s;
 }
-.flip:hover .flip-inner,
-.flip.touch .flip-inner{
+.flip-inner.flipped{
 transform:rotateY(180deg);
 }
 .face{
@@ -191,7 +177,6 @@ color:#4a2a2a;
 font-family:'Dancing Script',cursive;
 font-size:1.35rem;
 line-height:1.6;
-box-shadow:0 14px 35px rgba(0,0,0,.4);
 }
 
 /* BUTTON */
@@ -204,7 +189,6 @@ font-size:1rem;
 cursor:pointer;
 background:linear-gradient(135deg,#ffb6c1,#ffd1a4);
 color:#5a2a2a;
-box-shadow:0 12px 30px rgba(0,0,0,.45);
 }
 
 /* EFFECTS */
@@ -227,22 +211,20 @@ pointer-events:none;
 <!-- START -->
 <div id="start">
   <div class="start-box">
-    <h1>Happy Birthday Maa ❤️</h1>
-    <p>
-      Hi Mom<br>
-      Happiest Birthday to you ✨<br>
-      PS: Moons & Stars 🌙⭐
-    </p>
-    <button class="start-btn" onclick="startStory()">চলো একসাথে উদযাপন করি 🎂</button>
+    <h1>Happy 52nd Birthday Maa ❤️</h1>
+    <p>আজ শুধু জন্মদিন নয়,<br>আজ তোমাকেই উদযাপন করছি 🌸</p>
+    <button class="start-btn" onclick="startStory()">চলো শুরু করি 🎂</button>
   </div>
 </div>
 
 <!-- MAIN -->
 <div class="card" id="card">
 
-<!-- SLIDE 1 -->
+<!-- SLIDE TEMPLATE -->
 <div class="slide active">
+
 <div class="cake">
+  <div class="age">52 Years of Love</div>
   <div class="candles">
     <div class="candle"></div>
     <div class="candle"></div>
@@ -254,7 +236,7 @@ pointer-events:none;
 </div>
 
 <div class="flip">
-  <div class="flip-inner">
+  <div class="flip-inner" onclick="toggleFlip(this)">
     <div class="face front"><img src="photos/p1.jpg"></div>
     <div class="face back">আমার প্রথম আশ্রয় তুমি ❤️</div>
   </div>
@@ -268,98 +250,59 @@ PS: Moons and Stars ✨
 <button class="btn" onclick="next()">Next</button>
 </div>
 
-<!-- SLIDE 2 -->
 <div class="slide">
 <div class="flip">
-  <div class="flip-inner">
+  <div class="flip-inner" onclick="toggleFlip(this)">
     <div class="face front"><img src="photos/p2.jpg"></div>
-    <div class="face back">তুমি সবসময় আমার তারকা 🌟</div>
+    <div class="face back">তুমি সবসময় আমাদের আলো 🌟</div>
   </div>
 </div>
-
 <div class="note">
 Today is your day to shine,<br>
 but you’re always a star in my eyes 😘
 </div>
-
 <button class="btn" onclick="next()">Next</button>
 </div>
 
-<!-- SLIDE 3 -->
 <div class="slide">
 <div class="flip">
-  <div class="flip-inner">
+  <div class="flip-inner" onclick="toggleFlip(this)">
     <div class="face front"><img src="photos/p3.jpg"></div>
-    <div class="face back">আরেকটা সুন্দর বছর 🎉</div>
+    <div class="face back">৫২ বছরের ভালোবাসা 🎉</div>
   </div>
 </div>
-
 <div class="note">
 Cheers to another trip<br>
 around the sun 🤩
 </div>
-
 <button class="btn" onclick="next()">Next</button>
 </div>
 
-<!-- SLIDE 4 -->
 <div class="slide">
 <div class="flip">
-  <div class="flip-inner">
+  <div class="flip-inner" onclick="toggleFlip(this)">
     <div class="face front"><img src="photos/p4.jpg"></div>
-    <div class="face back">মায়ের ভালোবাসা 🤍</div>
+    <div class="face back">মায়ের ভালোবাসা অমূল্য 🤍</div>
   </div>
 </div>
-
 <div class="note">
 A mother’s love is something<br>
-I can’t put into words.<br>
-তুমি সবসময় বুঝে নাও,<br>
-আমি কতটা ভালোবাসি ☺️
+I can’t put into words ☺️
 </div>
-
 <button class="btn" onclick="next()">Next</button>
 </div>
 
-<!-- SLIDE 5 -->
 <div class="slide">
 <div class="flip">
-  <div class="flip-inner">
+  <div class="flip-inner" onclick="toggleFlip(this)">
     <div class="face front"><img src="photos/p5.jpg"></div>
     <div class="face back">পরিবার মানেই তুমি 💞</div>
   </div>
 </div>
-
 <div class="note">
-No matter how much I irritate you,<br>
-you still give me a treat 😽😸<br>
-so that I stop destroying your stuff ❤️
+No matter how much I irritate you 😽😸<br>
+you always love me the same ❤️
 </div>
-
-<button class="btn" onclick="next()">Final</button>
-</div>
-
-<!-- FINAL THANK YOU -->
-<div class="slide">
-<h1>Thank You Maa 🙏</h1>
-
-<div class="note">
-তোমার ত্যাগ, ধৈর্য আর ভালোবাসা ছাড়া<br>
-আমরা কিছুই নই ❤️<br><br>
-আজ শুধু জন্মদিন নয়,<br>
-আজ আমরা তোমাকে উদযাপন করছি 🌸
-</div>
-
-<div class="cake">
-  <div class="candles">
-    <div class="candle"></div>
-    <div class="candle"></div>
-    <div class="candle"></div>
-  </div>
-  <div class="layer"></div>
-  <div class="layer"></div>
-</div>
-
 </div>
 
 </div>
@@ -381,10 +324,12 @@ i++;
 slides[i].classList.add("active");
 }
 
-document.querySelectorAll('.flip').forEach(card=>{
-card.addEventListener('click',()=>card.classList.toggle('touch'));
-});
+/* FLIP TOGGLE — FIXED */
+function toggleFlip(el){
+el.classList.toggle("flipped");
+}
 
+/* EFFECTS */
 setInterval(()=>{
 let e=document.createElement("div");
 e.innerText=["🌸","💐","✨","❤️","🎉"][Math.floor(Math.random()*5)];
